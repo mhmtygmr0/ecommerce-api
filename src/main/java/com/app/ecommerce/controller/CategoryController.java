@@ -1,19 +1,17 @@
 package com.app.ecommerce.controller;
 
 import com.app.ecommerce.entity.Category;
-import com.app.ecommerce.service.CategoryServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.app.ecommerce.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/categories/")
+@RequestMapping("/categories")
 public class CategoryController {
 
-    private final CategoryServiceImpl categoryService;
+    private final CategoryService categoryService;
 
-    @Autowired
-    public CategoryController(CategoryServiceImpl categoryService) {
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
