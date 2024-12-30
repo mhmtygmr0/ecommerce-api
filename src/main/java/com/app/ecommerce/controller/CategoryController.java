@@ -46,13 +46,6 @@ public class CategoryController {
         Page<Category> categoryPage = this.categoryService.cursor(page, pageSize);
         Page<CategoryResponse> categoryResponsePage = categoryPage.map(category -> this.modelMapper.forResponse().map(category, CategoryResponse.class));
 
-        CursorResponse<CategoryResponse> cursor = new CursorResponse<>();
-
-        cursor.setItems(categoryResponsePage.getContent());
-        cursor.setPageNumber(categoryResponsePage.getNumber());
-        cursor.setPageSize(categoryResponsePage.getSize());
-        cursor.setTotalElements(categoryResponsePage.getTotalElements());
-
-        return ResultHelper.success(cursor);
+        return ResultHelper.cursor(categoryResponsePage);
     }
 }

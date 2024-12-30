@@ -2,6 +2,8 @@ package com.app.ecommerce.core.utilies;
 
 import com.app.ecommerce.core.result.Result;
 import com.app.ecommerce.core.result.ResultData;
+import com.app.ecommerce.dto.response.CursorResponse;
+import org.springframework.data.domain.Page;
 
 public class ResultHelper {
 
@@ -20,5 +22,15 @@ public class ResultHelper {
     public static Result notFoundError(String msg) {
         return new Result(false, msg, "404");
     }
-}
 
+    public static <T> ResultData<CursorResponse<T>> cursor(Page<T> pageData) {
+
+        CursorResponse<T> cursor = new CursorResponse<>();
+        cursor.setItems(pageData.getContent());
+        cursor.setPageNumber(pageData.getNumber());
+        cursor.setPageSize(pageData.getSize());
+        cursor.setTotalElements(pageData.getTotalElements());
+
+        return ResultHelper.success(cursor);
+    }
+}
