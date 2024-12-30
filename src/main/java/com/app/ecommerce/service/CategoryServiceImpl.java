@@ -1,5 +1,7 @@
 package com.app.ecommerce.service;
 
+import com.app.ecommerce.core.exception.NotFoundException;
+import com.app.ecommerce.core.utilies.Msg;
 import com.app.ecommerce.entity.Category;
 import com.app.ecommerce.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category get(int id) {
-        return this.categoryRepository.findById(id).orElseThrow();
+        return this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException(Msg.NOT_FOUND));
     }
 }

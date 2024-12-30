@@ -1,5 +1,6 @@
 package com.app.ecommerce.core.utilies;
 
+import com.app.ecommerce.core.result.Result;
 import com.app.ecommerce.core.result.ResultData;
 
 public class ResultHelper {
@@ -14,6 +15,10 @@ public class ResultHelper {
 
     public static <T> ResultData<T> success(T data) {
         return new ResultData<>(true, Msg.SUCCESS, "200", data);
+    }
+
+    public static Result notFoundError(String msg) {
+        return new Result(false, msg, "404");
     }
 }
 

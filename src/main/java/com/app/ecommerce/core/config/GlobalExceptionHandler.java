@@ -1,5 +1,7 @@
 package com.app.ecommerce.core.config;
 
+import com.app.ecommerce.core.exception.NotFoundException;
+import com.app.ecommerce.core.result.Result;
 import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,11 @@ import java.util.List;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Result> handleNotFoundException(NotFoundException e) {
+        return new ResponseEntity<>(ResultHelper.notFoundError(e.getMessage()), HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResultData<List<String>>> handleValidationException(MethodArgumentNotValidException ex) {
