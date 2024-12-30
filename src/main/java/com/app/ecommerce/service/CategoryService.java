@@ -9,4 +9,6 @@ public interface CategoryService {
     Category get(int id);
 
     Page<Category> cursor(int page, int pageSize);
+
+    Category update(Category category);
 }

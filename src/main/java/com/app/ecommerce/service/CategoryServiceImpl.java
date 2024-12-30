@@ -33,4 +33,9 @@ public class CategoryServiceImpl implements CategoryService {
         Pageable pageable = PageRequest.of(page, pageSize);
         return this.categoryRepository.findAll(pageable);
     }
+
+    @Override
+    public Category update(Category category) {
+        return this.categoryRepository.save(category);
+    }
 }

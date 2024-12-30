@@ -4,6 +4,7 @@ import com.app.ecommerce.core.config.modelMapper.ModelMapperService;
 import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.CategorySaveRequest;
+import com.app.ecommerce.dto.request.CategoryUpdateRequest;
 import com.app.ecommerce.dto.response.CategoryResponse;
 import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.entity.Category;
@@ -47,5 +48,13 @@ public class CategoryController {
         Page<CategoryResponse> categoryResponsePage = categoryPage.map(category -> this.modelMapper.forResponse().map(category, CategoryResponse.class));
 
         return ResultHelper.cursor(categoryResponsePage);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<CategoryResponse> update(@Valid @RequestBody CategoryUpdateRequest categoryUpdateRequest) {
+        Category category = this.modelMapper.forRequest().map(categoryUpdateRequest, Category.class);
+        this.categoryService.update(category);
+        return ResultHelper.success(this.modelMapper.forResponse().map(category, CategoryResponse.class));
     }
 }
