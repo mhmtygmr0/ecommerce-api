@@ -36,6 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category update(Category category) {
+        this.get(category.getId());
         return this.categoryRepository.save(category);
     }
 }
