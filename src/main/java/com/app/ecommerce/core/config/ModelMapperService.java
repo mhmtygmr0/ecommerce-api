@@ -1,4 +1,4 @@
-package com.app.ecommerce.core;
+package com.app.ecommerce.core.config;
 
 public interface ModelMapperService {
 
