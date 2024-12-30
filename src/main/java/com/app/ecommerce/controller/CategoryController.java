@@ -1,6 +1,6 @@
 package com.app.ecommerce.controller;
 
-import com.app.ecommerce.core.config.ModelMapperService;
+import com.app.ecommerce.core.config.modelMapper.ModelMapperService;
 import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.CategorySaveRequest;
