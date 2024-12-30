@@ -5,6 +5,7 @@ import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.CategorySaveRequest;
 import com.app.ecommerce.dto.response.CategoryResponse;
+import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.entity.Category;
 import com.app.ecommerce.service.CategoryService;
 import jakarta.validation.Valid;
@@ -41,9 +42,17 @@ public class CategoryController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public Page<CategoryResponse> cursor(@RequestParam(name = "page", required = false, defaultValue = "0") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    public ResultData<CursorResponse<CategoryResponse>> cursor(@RequestParam(name = "page", required = false, defaultValue = "0") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
         Page<Category> categoryPage = this.categoryService.cursor(page, pageSize);
         Page<CategoryResponse> categoryResponsePage = categoryPage.map(category -> this.modelMapper.forResponse().map(category, CategoryResponse.class));
-        return categoryResponsePage;
+
+        CursorResponse<CategoryResponse> cursor = new CursorResponse<>();
+
+        cursor.setItems(categoryResponsePage.getContent());
+        cursor.setPageNumber(categoryResponsePage.getNumber());
+        cursor.setPageSize(categoryResponsePage.getSize());
+        cursor.setTotalElements(categoryResponsePage.getTotalElements());
+
+        return ResultHelper.success(cursor);
     }
 }
