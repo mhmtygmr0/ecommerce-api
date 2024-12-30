@@ -39,4 +39,11 @@ public class CategoryServiceImpl implements CategoryService {
         this.get(category.getId());
         return this.categoryRepository.save(category);
     }
+
+    @Override
+    public boolean delete(int id) {
+        Category category = this.get(id);
+        this.categoryRepository.delete(category);
+        return true;
+    }
 }

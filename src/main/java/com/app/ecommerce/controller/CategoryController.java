@@ -1,6 +1,7 @@
 package com.app.ecommerce.controller;
 
 import com.app.ecommerce.core.config.modelMapper.ModelMapperService;
+import com.app.ecommerce.core.result.Result;
 import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.CategorySaveRequest;
@@ -56,5 +57,12 @@ public class CategoryController {
         Category category = this.modelMapper.forRequest().map(categoryUpdateRequest, Category.class);
         this.categoryService.update(category);
         return ResultHelper.success(this.modelMapper.forResponse().map(category, CategoryResponse.class));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Result delete(@PathVariable("id") int id) {
+        this.categoryService.delete(id);
+        return ResultHelper.ok();
     }
 }
