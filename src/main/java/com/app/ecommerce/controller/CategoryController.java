@@ -2,6 +2,7 @@ package com.app.ecommerce.controller;
 
 import com.app.ecommerce.core.config.ModelMapperService;
 import com.app.ecommerce.core.result.ResultData;
+import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.CategorySaveRequest;
 import com.app.ecommerce.dto.response.CategoryResponse;
 import com.app.ecommerce.entity.Category;
@@ -27,7 +28,6 @@ public class CategoryController {
     public ResultData<CategoryResponse> save(@Valid @RequestBody CategorySaveRequest categorySaveRequest) {
         Category category = this.modelMapper.forRequest().map(categorySaveRequest, Category.class);
         this.categoryService.save(category);
-        CategoryResponse categoryResponse = this.modelMapper.forResponse().map(category, CategoryResponse.class);
-        return new ResultData<>(true, "Veri Eklendi", "201", categoryResponse);
+        return ResultHelper.created(this.modelMapper.forResponse().map(category, CategoryResponse.class));
     }
 }
