@@ -4,6 +4,9 @@ import com.app.ecommerce.core.exception.NotFoundException;
 import com.app.ecommerce.core.utilies.Msg;
 import com.app.ecommerce.entity.Supplier;
 import com.app.ecommerce.repository.SupplierRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +26,11 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public Supplier get(int id) {
         return this.supplierRepository.findById(id).orElseThrow(() -> new NotFoundException(Msg.NOT_FOUND));
+    }
+
+    @Override
+    public Page<Supplier> cursor(int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return this.supplierRepository.findAll(pageable);
     }
 }

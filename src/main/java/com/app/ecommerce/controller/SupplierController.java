@@ -4,10 +4,12 @@ import com.app.ecommerce.core.config.modelMapper.ModelMapperService;
 import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.supplier.SupplierSaveRequest;
+import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.dto.response.SupplierResponse;
 import com.app.ecommerce.entity.Supplier;
 import com.app.ecommerce.service.SupplierService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +39,14 @@ public class SupplierController {
     public ResultData<SupplierResponse> get(@PathVariable("id") int id) {
         Supplier supplier = this.supplierService.get(id);
         return ResultHelper.success(this.modelMapper.forResponse().map(supplier, SupplierResponse.class));
+    }
+
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<CursorResponse<SupplierResponse>> cursor(@RequestParam(name = "page", required = false, defaultValue = "0") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        Page<Supplier> supplierPage = this.supplierService.cursor(page, pageSize);
+        Page<SupplierResponse> supplierResponsePage = supplierPage.map(supplier -> this.modelMapper.forResponse().map(supplier, SupplierResponse.class));
+
+        return ResultHelper.cursor(supplierResponsePage);
     }
 }
