@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 public class SupplierController {
 
     private final SupplierService supplierService;
-
     private final ModelMapperService modelMapper;
 
     public SupplierController(SupplierService supplierService, ModelMapperService modelMapperService) {
