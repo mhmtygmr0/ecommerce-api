@@ -1,9 +1,11 @@
 package com.app.ecommerce.controller;
 
 import com.app.ecommerce.core.config.modelMapper.ModelMapperService;
+import com.app.ecommerce.core.result.Result;
 import com.app.ecommerce.core.result.ResultData;
 import com.app.ecommerce.core.utilies.ResultHelper;
 import com.app.ecommerce.dto.request.supplier.SupplierSaveRequest;
+import com.app.ecommerce.dto.request.supplier.SupplierUpdateRequest;
 import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.dto.response.SupplierResponse;
 import com.app.ecommerce.entity.Supplier;
@@ -48,5 +50,20 @@ public class SupplierController {
         Page<SupplierResponse> supplierResponsePage = supplierPage.map(supplier -> this.modelMapper.forResponse().map(supplier, SupplierResponse.class));
 
         return ResultHelper.cursor(supplierResponsePage);
+    }
+
+    @PutMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<SupplierResponse> update(@Valid @RequestBody SupplierUpdateRequest supplierUpdateRequest) {
+        Supplier supplier = this.modelMapper.forRequest().map(supplierUpdateRequest, Supplier.class);
+        this.supplierService.update(supplier);
+        return ResultHelper.success(this.modelMapper.forResponse().map(supplier, SupplierResponse.class));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Result delete(@PathVariable("id") int id) {
+        this.supplierService.delete(id);
+        return ResultHelper.ok();
     }
 }

@@ -33,4 +33,17 @@ public class SupplierServiceImpl implements SupplierService {
         Pageable pageable = PageRequest.of(page, pageSize);
         return this.supplierRepository.findAll(pageable);
     }
+
+    @Override
+    public Supplier update(Supplier supplier) {
+        this.get(supplier.getId());
+        return this.supplierRepository.save(supplier);
+    }
+
+    @Override
+    public boolean delete(int id) {
+        Supplier supplier = this.get(id);
+        this.supplierRepository.delete(supplier);
+        return true;
+    }
 }

@@ -9,4 +9,8 @@ public interface SupplierService {
     Supplier get(int id);
 
     Page<Supplier> cursor(int page, int pageSize);
+
+    Supplier update(Supplier supplier);
+
+    boolean delete(int id);
 }
