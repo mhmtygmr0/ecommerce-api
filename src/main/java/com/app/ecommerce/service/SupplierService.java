@@ -4,4 +4,6 @@ import com.app.ecommerce.entity.Supplier;
 
 public interface SupplierService {
     Supplier save(Supplier supplier);
+
+    Supplier get(int id);
 }

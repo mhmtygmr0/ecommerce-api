@@ -31,4 +31,11 @@ public class SupplierController {
         this.supplierService.save(supplier);
         return ResultHelper.created(this.modelMapper.forResponse().map(supplier, SupplierResponse.class));
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<SupplierResponse> get(@PathVariable("id") int id) {
+        Supplier supplier = this.supplierService.get(id);
+        return ResultHelper.success(this.modelMapper.forResponse().map(supplier, SupplierResponse.class));
+    }
 }
