@@ -1,4 +1,4 @@
-package com.app.ecommerce.service;
+package com.app.ecommerce.service.supplier;
 
 import com.app.ecommerce.entity.Supplier;
 import org.springframework.data.domain.Page;

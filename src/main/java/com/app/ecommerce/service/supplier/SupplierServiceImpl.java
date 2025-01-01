@@ -1,4 +1,4 @@
-package com.app.ecommerce.service;
+package com.app.ecommerce.service.supplier;
 
 import com.app.ecommerce.core.exception.NotFoundException;
 import com.app.ecommerce.core.utilies.Msg;

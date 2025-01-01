@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -19,12 +21,16 @@ public class Category {
     @Column(name = "category_name")
     private String name;
 
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "category")
+    private List<Category> categoryList;
 
     public Category() {
+    }
+
+    public Category(int id, String name, List<Category> categoryList) {
+        this.id = id;
+        this.name = name;
+        this.categoryList = categoryList;
     }
 
     public int getId() {
@@ -43,11 +49,20 @@ public class Category {
         this.name = name;
     }
 
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", categoryList=" + categoryList +
                 '}';
     }
 }

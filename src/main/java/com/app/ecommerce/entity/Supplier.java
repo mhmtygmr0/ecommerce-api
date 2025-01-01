@@ -2,6 +2,8 @@ package com.app.ecommerce.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "suppliers")
 public class Supplier {
@@ -23,15 +25,19 @@ public class Supplier {
     @Column(name = "supplier_mail")
     private String contactMail;
 
+    @OneToMany(mappedBy = "supplier")
+    private List<Product> productList;
+
     public Supplier() {
     }
 
-    public Supplier(int id, String companyName, String contactName, String address, String contactMail) {
+    public Supplier(int id, String companyName, String contactName, String address, String contactMail, List<Product> productList) {
         this.id = id;
         this.companyName = companyName;
         this.contactName = contactName;
         this.address = address;
         this.contactMail = contactMail;
+        this.productList = productList;
     }
 
     public int getId() {
@@ -74,6 +80,14 @@ public class Supplier {
         this.contactMail = contactMail;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
     @Override
     public String toString() {
         return "Supplier{" +
@@ -82,6 +96,7 @@ public class Supplier {
                 ", contactName='" + contactName + '\'' +
                 ", address='" + address + '\'' +
                 ", contactMail='" + contactMail + '\'' +
+                ", productList=" + productList +
                 '}';
     }
 }

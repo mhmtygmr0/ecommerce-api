@@ -9,7 +9,7 @@ import com.app.ecommerce.dto.request.supplier.SupplierUpdateRequest;
 import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.dto.response.SupplierResponse;
 import com.app.ecommerce.entity.Supplier;
-import com.app.ecommerce.service.SupplierService;
+import com.app.ecommerce.service.supplier.SupplierService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

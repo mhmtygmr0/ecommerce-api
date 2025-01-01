@@ -9,7 +9,7 @@ import com.app.ecommerce.dto.request.category.CategoryUpdateRequest;
 import com.app.ecommerce.dto.response.CategoryResponse;
 import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.entity.Category;
-import com.app.ecommerce.service.CategoryService;
+import com.app.ecommerce.service.category.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

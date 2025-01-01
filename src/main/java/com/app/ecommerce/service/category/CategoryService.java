@@ -1,4 +1,4 @@
-package com.app.ecommerce.service;
+package com.app.ecommerce.service.category;
 
 import com.app.ecommerce.entity.Category;
 import org.springframework.data.domain.Page;
