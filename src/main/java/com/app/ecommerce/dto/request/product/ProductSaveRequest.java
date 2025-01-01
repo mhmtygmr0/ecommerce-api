@@ -1,7 +1,5 @@
 package com.app.ecommerce.dto.request.product;
 
-import com.app.ecommerce.entity.Category;
-import com.app.ecommerce.entity.Supplier;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -21,20 +19,20 @@ public class ProductSaveRequest {
     private int stock;
 
     @NotNull(message = "Supplier cannot be null")
-    private Supplier supplier;
+    private int supplierId;
 
     @NotNull(message = "Category cannot be null")
-    private Category category;
+    private int categoryId;
 
     public ProductSaveRequest() {
     }
 
-    public ProductSaveRequest(String name, double prc, int stock, Supplier supplier, Category category) {
+    public ProductSaveRequest(String name, double prc, int stock, int supplierId, int categoryId) {
         this.name = name;
         this.prc = prc;
         this.stock = stock;
-        this.supplier = supplier;
-        this.category = category;
+        this.supplierId = supplierId;
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -61,20 +59,20 @@ public class ProductSaveRequest {
         this.stock = stock;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
@@ -83,8 +81,8 @@ public class ProductSaveRequest {
                 "name='" + name + '\'' +
                 ", prc=" + prc +
                 ", stock=" + stock +
-                ", supplier=" + supplier +
-                ", category=" + category +
+                ", supplierId=" + supplierId +
+                ", categoryId=" + categoryId +
                 '}';
     }
 }

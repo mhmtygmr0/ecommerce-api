@@ -21,16 +21,16 @@ public class Category {
     @Column(name = "category_name")
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Category> categoryList;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> productList;
 
     public Category() {
     }
 
-    public Category(int id, String name, List<Category> categoryList) {
+    public Category(int id, String name, List<Product> productList) {
         this.id = id;
         this.name = name;
-        this.categoryList = categoryList;
+        this.productList = productList;
     }
 
     public int getId() {
@@ -49,12 +49,12 @@ public class Category {
         this.name = name;
     }
 
-    public List<Category> getCategoryList() {
-        return categoryList;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", categoryList=" + categoryList +
+                ", productList=" + productList +
                 '}';
     }
 }

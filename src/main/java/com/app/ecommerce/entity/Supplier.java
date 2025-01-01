@@ -25,7 +25,7 @@ public class Supplier {
     @Column(name = "supplier_mail")
     private String contactMail;
 
-    @OneToMany(mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
     private List<Product> productList;
 
     public Supplier() {
