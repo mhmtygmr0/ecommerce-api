@@ -10,9 +10,11 @@ import com.app.ecommerce.dto.response.CursorResponse;
 import com.app.ecommerce.dto.response.ProductResponse;
 import com.app.ecommerce.dto.response.SupplierResponse;
 import com.app.ecommerce.entity.Category;
+import com.app.ecommerce.entity.Code;
 import com.app.ecommerce.entity.Product;
 import com.app.ecommerce.entity.Supplier;
 import com.app.ecommerce.service.category.CategoryService;
+import com.app.ecommerce.service.code.CodeService;
 import com.app.ecommerce.service.product.ProductService;
 import com.app.ecommerce.service.supplier.SupplierService;
 import jakarta.validation.Valid;
@@ -28,12 +30,14 @@ public class ProductController {
     private final ProductService productService;
     private final CategoryService categoryService;
     private final SupplierService supplierService;
+    private final CodeService codeService;
 
-    public ProductController(ModelMapperService modelMapper, ProductService productService, CategoryService categoryService, SupplierService supplierService) {
+    public ProductController(ModelMapperService modelMapper, ProductService productService, CategoryService categoryService, SupplierService supplierService, CodeService codeService) {
         this.modelMapper = modelMapper;
         this.productService = productService;
         this.categoryService = categoryService;
         this.supplierService = supplierService;
+        this.codeService = codeService;
     }
 
     @PostMapping()
@@ -46,6 +50,9 @@ public class ProductController {
 
         Supplier supplier = this.supplierService.get(productSaveRequest.getSupplierId());
         product.setSupplier(supplier);
+
+        Code code = this.codeService.get(productSaveRequest.getCodeId());
+        product.setCode(code);
 
         this.productService.save(product);
         return ResultHelper.created(this.modelMapper.forResponse().map(product, ProductResponse.class));
@@ -84,6 +91,9 @@ public class ProductController {
 
         Supplier supplier = this.supplierService.get(productUpdateRequest.getSupplierId());
         product.setSupplier(supplier);
+
+        Code code = this.codeService.get(productUpdateRequest.getCodeId());
+        product.setCode(code);
 
         this.productService.update(product);
         return ResultHelper.created(this.modelMapper.forResponse().map(product, ProductResponse.class));

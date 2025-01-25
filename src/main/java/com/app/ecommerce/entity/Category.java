@@ -2,8 +2,6 @@ package com.app.ecommerce.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -16,8 +14,6 @@ public class Category {
     @Column(name = "category_id")
     private int id;
 
-    @NotNull(message = "Category name cannot be null")
-    @NotEmpty(message = "Category name cannot be empty")
     @Column(name = "category_name")
     private String name;
 

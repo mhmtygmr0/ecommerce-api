@@ -28,6 +28,10 @@ public class Product {
     @JoinColumn(name = "product_category_id", referencedColumnName = "category_id")
     private Category category;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "code_id", referencedColumnName = "code_id")
+    private Code code;
+
     public Product() {
     }
 
@@ -86,6 +90,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Code getCode() {
+        return code;
+    }
+
+    public void setCode(Code code) {
+        this.code = code;
     }
 
     @Override

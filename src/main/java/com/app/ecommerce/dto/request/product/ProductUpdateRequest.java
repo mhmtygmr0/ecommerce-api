@@ -27,16 +27,20 @@ public class ProductUpdateRequest {
     @NotNull(message = "Category cannot be null")
     private int categoryId;
 
+    @NotNull(message = "Code cannot be null")
+    private int codeId;
+
     public ProductUpdateRequest() {
     }
 
-    public ProductUpdateRequest(int id, String name, double prc, int stock, int supplierId, int categoryId) {
+    public ProductUpdateRequest(int id, String name, double prc, int stock, int supplierId, int categoryId, int codeId) {
         this.id = id;
         this.name = name;
         this.prc = prc;
         this.stock = stock;
         this.supplierId = supplierId;
         this.categoryId = categoryId;
+        this.codeId = codeId;
     }
 
     public int getId() {
@@ -87,6 +91,14 @@ public class ProductUpdateRequest {
         this.categoryId = categoryId;
     }
 
+    public int getCodeId() {
+        return codeId;
+    }
+
+    public void setCodeId(int codeId) {
+        this.codeId = codeId;
+    }
+
     @Override
     public String toString() {
         return "ProductUpdateRequest{" +
@@ -96,6 +108,7 @@ public class ProductUpdateRequest {
                 ", stock=" + stock +
                 ", supplierId=" + supplierId +
                 ", categoryId=" + categoryId +
+                ", codeId=" + codeId +
                 '}';
     }
 }
