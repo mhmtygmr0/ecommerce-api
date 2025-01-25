@@ -2,16 +2,16 @@ package com.app.ecommerce.dto.response;
 
 public class CodeResponse {
     private int id;
-    private String group;
-    private String serial;
+    private String prefix;
+    private String number;
 
     public CodeResponse() {
     }
 
-    public CodeResponse(int id, String group, String serial) {
+    public CodeResponse(int id, String prefix, String number) {
         this.id = id;
-        this.group = group;
-        this.serial = serial;
+        this.prefix = prefix;
+        this.number = number;
     }
 
     public int getId() {
@@ -22,28 +22,28 @@ public class CodeResponse {
         this.id = id;
     }
 
-    public String getGroup() {
-        return group;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
-    public String getSerial() {
-        return serial;
+    public String getNumber() {
+        return number;
     }
 
-    public void setSerial(String serial) {
-        this.serial = serial;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     @Override
     public String toString() {
         return "CodeResponse{" +
                 "id=" + id +
-                ", group='" + group + '\'' +
-                ", serial='" + serial + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", number='" + number + '\'' +
                 '}';
     }
 }

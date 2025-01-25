@@ -7,19 +7,20 @@ public class CodeUpdateRequest {
     @NotNull(message = "ID cannot be null.")
     private int id;
 
-    @NotNull(message = "Group cannot be null.")
-    private String group;
+    @NotNull(message = "Prefix cannot be null.")
+    private String prefix;
 
-    @NotNull(message = "Serial cannot be null.")
-    private String serial;
+    @Size(min = 5, max = 5, message = "Number must be 5 characters.")
+    @NotNull(message = "Number cannot be null.")
+    private String number;
 
     public CodeUpdateRequest() {
     }
 
-    public CodeUpdateRequest(int id, String group, String serial) {
+    public CodeUpdateRequest(int id, String prefix, String number) {
         this.id = id;
-        this.group = group;
-        this.serial = serial;
+        this.prefix = prefix;
+        this.number = number;
     }
 
     public int getId() {
@@ -30,28 +31,28 @@ public class CodeUpdateRequest {
         this.id = id;
     }
 
-    public String getGroup() {
-        return group;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
-    public String getSerial() {
-        return serial;
+    public String getNumber() {
+        return number;
     }
 
-    public void setSerial(String serial) {
-        this.serial = serial;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     @Override
     public String toString() {
         return "CodeUpdateRequest{" +
                 "id=" + id +
-                ", group='" + group + '\'' +
-                ", serial='" + serial + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", number='" + number + '\'' +
                 '}';
     }
 }

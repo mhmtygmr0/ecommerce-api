@@ -20,6 +20,9 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public Code save(Code code) {
+        // prefix'i büyük harflere dönüştür
+        String uppercasePrefix = code.getPrefix().toUpperCase();
+        code.setPrefix(uppercasePrefix);
         return this.codeRepository.save(code);
     }
 

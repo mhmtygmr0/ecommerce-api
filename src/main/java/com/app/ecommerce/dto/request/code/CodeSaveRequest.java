@@ -4,38 +4,42 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class CodeSaveRequest {
-    @NotNull(message = "Group cannot be null.")
-    private String group;
+    @NotNull(message = "Prefix cannot be null.")
+    private String prefix;
 
-    @NotNull(message = "Serial cannot be null.")
-    private String serial;
+    @Size(min = 5, max = 5, message = "Number must be 5 characters.")
+    @NotNull(message = "Number cannot be null.")
+    private String number;
 
     public CodeSaveRequest() {
     }
 
-    public CodeSaveRequest(String group, String serial) {
-        this.group = group;
-        this.serial = serial;
+    public CodeSaveRequest(String prefix, String number) {
+        this.prefix = prefix;
+        this.number = number;
     }
 
-    public String getGroup() {
-        return group;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
-    public String getSerial() {
-        return serial;
+    public String getNumber() {
+        return number;
     }
 
-    public void setSerial(String serial) {
-        this.serial = serial;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     @Override
     public String toString() {
-        return "CodeSaveRequest{" + "group='" + group + '\'' + ", serial='" + serial + '\'' + '}';
+        return "CodeSaveRequest{" +
+                "prefix='" + prefix + '\'' +
+                ", number='" + number + '\'' +
+                '}';
     }
 }

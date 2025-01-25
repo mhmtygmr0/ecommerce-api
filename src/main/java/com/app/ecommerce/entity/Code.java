@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(
         name = "code",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"code_group", "code_serial"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"code_prefix", "code_number"})
 )
 public class Code {
 
@@ -14,11 +14,11 @@ public class Code {
     @Column(name = "code_id")
     private int id;
 
-    @Column(name = "code_group")
-    private String group;
+    @Column(name = "code_prefix")
+    private String prefix;
 
-    @Column(name = "code_serial")
-    private String serial;
+    @Column(name = "code_number")
+    private String number;
 
     @OneToOne(mappedBy = "code", cascade = CascadeType.ALL)
     private Product product;
@@ -26,10 +26,10 @@ public class Code {
     public Code() {
     }
 
-    public Code(int id, String group, String serial, Product product) {
+    public Code(int id, String prefix, String number, Product product) {
         this.id = id;
-        this.group = group;
-        this.serial = serial;
+        this.prefix = prefix;
+        this.number = number;
         this.product = product;
     }
 
@@ -41,20 +41,20 @@ public class Code {
         this.id = id;
     }
 
-    public String getGroup() {
-        return group;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
-    public String getSerial() {
-        return serial;
+    public String getNumber() {
+        return number;
     }
 
-    public void setSerial(String serial) {
-        this.serial = serial;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Product getProduct() {
@@ -69,8 +69,8 @@ public class Code {
     public String toString() {
         return "Code{" +
                 "id=" + id +
-                ", group='" + group + '\'' +
-                ", serial='" + serial + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", number='" + number + '\'' +
                 ", product=" + product +
                 '}';
     }
