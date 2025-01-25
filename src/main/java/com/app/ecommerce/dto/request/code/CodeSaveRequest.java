@@ -8,7 +8,6 @@ public class CodeSaveRequest {
     private String group;
 
     @NotNull(message = "Serial cannot be null.")
-    @Size(min = 6, message = "Serial min 6 characters.")
     private String serial;
 
     public CodeSaveRequest() {

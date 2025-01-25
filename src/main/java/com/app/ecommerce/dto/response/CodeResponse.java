@@ -1,22 +1,14 @@
-package com.app.ecommerce.dto.request.code;
+package com.app.ecommerce.dto.response;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
-public class CodeUpdateRequest {
-    @NotNull(message = "ID cannot be null.")
+public class CodeResponse {
     private int id;
-
-    @NotNull(message = "Group cannot be null.")
     private String group;
-
-    @NotNull(message = "Serial cannot be null.")
     private String serial;
 
-    public CodeUpdateRequest() {
+    public CodeResponse() {
     }
 
-    public CodeUpdateRequest(int id, String group, String serial) {
+    public CodeResponse(int id, String group, String serial) {
         this.id = id;
         this.group = group;
         this.serial = serial;
@@ -48,7 +40,7 @@ public class CodeUpdateRequest {
 
     @Override
     public String toString() {
-        return "CodeUpdateRequest{" +
+        return "CodeResponse{" +
                 "id=" + id +
                 ", group='" + group + '\'' +
                 ", serial='" + serial + '\'' +
