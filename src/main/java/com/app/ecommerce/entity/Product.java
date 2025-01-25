@@ -29,7 +29,7 @@ public class Product {
     private Category category;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "code_id", referencedColumnName = "code_id")
+    @JoinColumn(name = "product_code_id", referencedColumnName = "code_id")
     private Code code;
 
     public Product() {
