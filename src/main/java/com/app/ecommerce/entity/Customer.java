@@ -1,6 +1,7 @@
 package com.app.ecommerce.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.time.LocalDate;
 
@@ -13,27 +14,33 @@ public class Customer {
     @Column(name = "customer_id")
     private int id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "customer_gender")
-    private String gender;
+    private Gender gender;
 
-    @Column(name = "customer_mail")
-    private String mail;
+    @Email
+    @Column(name = "customer_email", unique = true)
+    private String email;
 
     @Column(name = "customer_name")
     private String name;
 
-    @Column(name = "customer_on_date")
-    private LocalDate date;
+    @Column(name = "customer_registered_date")
+    private LocalDate registeredDate = LocalDate.now();
+
+    enum Gender {
+        MALE, FEMALE, OTHER
+    }
 
     public Customer() {
     }
 
-    public Customer(int id, String gender, String mail, String name, LocalDate date) {
+    public Customer(int id, Gender gender, String email, String name, LocalDate registeredDate) {
         this.id = id;
         this.gender = gender;
-        this.mail = mail;
+        this.email = email;
         this.name = name;
-        this.date = date;
+        this.registeredDate = registeredDate;
     }
 
     public int getId() {
@@ -44,20 +51,20 @@ public class Customer {
         this.id = id;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -68,22 +75,22 @@ public class Customer {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getRegisteredDate() {
+        return registeredDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setRegisteredDate(LocalDate registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", gender='" + gender + '\'' +
-                ", mail='" + mail + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
-                ", date=" + date +
+                ", registeredDate=" + registeredDate +
                 '}';
     }
 }

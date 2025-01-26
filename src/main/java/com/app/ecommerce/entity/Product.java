@@ -2,6 +2,8 @@ package com.app.ecommerce.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -15,12 +17,12 @@ public class Product {
     private String name;
 
     @Column(name = "product_price")
-    private double prc;
+    private double price;
 
     @Column(name = "product_stock")
     private int stock;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_supplier_id", referencedColumnName = "supplier_id")
     private Supplier supplier;
 
@@ -32,16 +34,21 @@ public class Product {
     @JoinColumn(name = "product_code_id", referencedColumnName = "code_id")
     private Code code;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderProduct> orderProducts;
+
     public Product() {
     }
 
-    public Product(int id, String name, double prc, int stock, Supplier supplier, Category category) {
+    public Product(int id, String name, double price, int stock, Supplier supplier, Category category, Code code, List<OrderProduct> orderProducts) {
         this.id = id;
         this.name = name;
-        this.prc = prc;
+        this.price = price;
         this.stock = stock;
         this.supplier = supplier;
         this.category = category;
+        this.code = code;
+        this.orderProducts = orderProducts;
     }
 
     public int getId() {
@@ -60,12 +67,12 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrc() {
-        return prc;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrc(double prc) {
-        this.prc = prc;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getStock() {
@@ -100,12 +107,20 @@ public class Product {
         this.code = code;
     }
 
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", prc=" + prc +
+                ", price=" + price +
                 ", stock=" + stock +
                 '}';
     }
