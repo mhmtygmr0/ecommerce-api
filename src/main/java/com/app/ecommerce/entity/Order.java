@@ -1,6 +1,7 @@
 package com.app.ecommerce.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Order {
     private int id;
 
     @Column(name = "order_date")
+    @CreationTimestamp
     private LocalDate orderDate;
 
     @Column(name = "order_total_price")
