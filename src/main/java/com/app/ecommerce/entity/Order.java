@@ -12,13 +12,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private int id;
+
     @Column(name = "order_date")
     private LocalDate orderDate;
+
     @Column(name = "order_total_price")
     private double totalPrice;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProducts;
 
