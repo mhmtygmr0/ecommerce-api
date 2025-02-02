@@ -1,114 +1,68 @@
-# E-Commerce API
+# E-commerce REST API
 
-This project is a RESTful API application developed for an e-commerce platform. It manages essential components such as categories, products, and suppliers. The project is built using Spring Boot and Hibernate.
-
-## Features
-- Management of categories, products, and suppliers
-- CRUD (Create, Read, Update, Delete) operations
-- Data transfer and validation with DTOs
-- Centralized error handling (`GlobalExceptionHandler`)
-- Clean code structure with layered architecture
-- DTO and Entity conversions using ModelMapper
-- Standardized API responses (`Result` and `ResultData` structures)
-
----
+This project provides essential REST APIs for an e-commerce platform. It is designed to manage core e-commerce operations such as categories, products, customers, suppliers, and orders. The project is actively being developed and improved.
 
 ## Project Structure
 
-### Packages and Classes
-- **controller**: Handles HTTP requests
-    - `CategoryController`, `ProductController`, `SupplierController`
-- **core**: Helper classes and global configurations
-    - `ModelMapperConfig`, `GlobalExceptionHandler`
-- **dto**: Classes for data transfer
-    - `CategorySaveRequest`, `ProductResponse`, etc.
-- **entity**: Represents database tables
-    - `Category`, `Product`, `Supplier`
-- **repository**: JPA repositories
-    - `CategoryRepository`, `ProductRepository`, `SupplierRepository`
-- **service**: Manages business logic
-    - `CategoryService`, `ProductService`, `SupplierService`
+The project consists of the following main components:
 
----
+- **Controller**: Contains API endpoints.
+- **Service**: Handles business logic.
+- **Repository**: Manages database operations.
+- **DTO (Data Transfer Object)**: Defines request and response data models.
+- **Entity**: Represents database tables.
+- **Config**: Includes configuration settings.
+- **Exception**: Manages custom exception handling.
 
-## Technologies Used
-- **Java**: 17
-- **Spring Boot**: 3.1
-- **Hibernate**: ORM framework
-- **PostgreSQL**: Database
-- **ModelMapper**: For DTO conversions
-- **Lombok**: To simplify code
-- **Maven**: Project build tool
+## Installation
 
----
+To run the project on your local machine, follow these steps:
 
-## Installation and Running
+1. **Requirements**:
+    - Java JDK 23 or later
+    - Maven
+    - PostgreSQL database
 
-### Prerequisites
-- Java 17+
-- Maven
-- PostgreSQL
+2. **Database Configuration**:
+    - Update the database connection details in `src/main/resources/application.properties`.
 
-### Steps
-1. Clone the project:
-   ```bash
-   git clone https://github.com/mhmtygmr0/ecommerce-api.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd ecommerce-api
-   ```
-3. Configure the `application.properties` file:
-   ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/ecommerce
-   spring.datasource.username=your_db_username
-   spring.datasource.password=your_db_password
-   spring.jpa.hibernate.ddl-auto=update
-   ```
-4. Install Maven dependencies:
-   ```bash
-   mvn clean install
-   ```
-5. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
-
----
+3. **Build and Run the Project**:
+    - Navigate to the project root directory in the terminal.
+    - Build the project using `mvn clean install`.
+    - Start the application with `mvn spring-boot:run`.
 
 ## API Endpoints
 
-### Category Endpoints
-- **GET** `/api/categories`: Retrieves all categories.
-- **POST** `/api/categories`: Creates a new category.
-- **PUT** `/api/categories/{id}`: Updates a category.
-- **DELETE** `/api/categories/{id}`: Deletes a category.
+### Categories
+- `GET /api/categories`: Retrieves all categories.
+- `POST /api/categories`: Adds a new category.
+- `PUT /api/categories/{id}`: Updates a specific category.
+- `DELETE /api/categories/{id}`: Deletes a specific category.
 
-### Product Endpoints
-- **GET** `/api/products`: Retrieves all products.
-- **POST** `/api/products`: Creates a new product.
-- **PUT** `/api/products/{id}`: Updates a product.
-- **DELETE** `/api/products/{id}`: Deletes a product.
+### Products
+- `GET /api/products`: Retrieves all products.
+- `POST /api/products`: Adds a new product.
+- `PUT /api/products/{id}`: Updates a specific product.
+- `DELETE /api/products/{id}`: Deletes a specific product.
 
-### Supplier Endpoints
-- **GET** `/api/suppliers`: Retrieves all suppliers.
-- **POST** `/api/suppliers`: Creates a new supplier.
-- **PUT** `/api/suppliers/{id}`: Updates a supplier.
-- **DELETE** `/api/suppliers/{id}`: Deletes a supplier.
+### Customers
+- `GET /api/customers`: Retrieves all customers.
+- `POST /api/customers`: Adds a new customer.
+- `PUT /api/customers/{id}`: Updates a specific customer.
+- `DELETE /api/customers/{id}`: Deletes a specific customer.
 
----
+### Suppliers
+- `GET /api/suppliers`: Retrieves all suppliers.
+- `POST /api/suppliers`: Adds a new supplier.
+- `PUT /api/suppliers/{id}`: Updates a specific supplier.
+- `DELETE /api/suppliers/{id}`: Deletes a specific supplier.
 
-## Error Handling
-- **404 Not Found**: Thrown when the requested data is not found.
-- **400 Bad Request**: Thrown when invalid or incomplete data is sent.
-- **500 Internal Server Error**: Thrown for unexpected errors.
+### Orders
+- `GET /api/orders`: Retrieves all orders.
+- `POST /api/orders`: Adds a new order.
+- `PUT /api/orders/{id}`: Updates a specific order.
+- `DELETE /api/orders/{id}`: Deletes a specific order.
 
----
+## Contribution
 
-## Contributing
-To contribute, fork the repository and submit a pull request.
-
----
-
-## License
-This project is licensed under the MIT License.
+If you want to contribute, please submit a pull request. For significant changes, open an issue first to discuss what you would like to modify.
